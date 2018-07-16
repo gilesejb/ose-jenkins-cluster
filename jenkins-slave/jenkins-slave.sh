@@ -23,7 +23,11 @@ if [ ! -z $JENKINS_SECRET ] && [ ! -z $JENKINS_JNLP_URL ]; then
 		URL="-url $JENKINS_URL"
 	fi
 
-	exec java $JAVA_OPTS -cp $JAR hudson.remoting.jnlp.Main -headless $TUNNEL $URL -jar-cache $HOME "$@"
+	DISABLED_PROTOCOLS="-Dorg.jenkinsci.remoting.engine.JnlpProtocol1.disabled \
+	                    -Dorg.jenkinsci.remoting.engine.JnlpProtocol2.disabled \
+	                    -Dorg.jenkinsci.remoting.engine.JnlpProtocol3.disabled"
+
+	exec java $JAVA_OPTS $DISABLED_PROTOCOLS -cp $JAR hudson.remoting.jnlp.Main -headless $TUNNEL $URL -jar-cache $HOME "$@"
 
 elif [[ $# -lt 1 ]] || [[ "$1" == "-"* ]]; then
 
