@@ -1,7 +1,7 @@
 FROM registry.access.redhat.com/rhel7/rhel
 
 ENV JENKINS_SWARM_VERSION 2.0
-ENV JNLP_SLAVE_VERSION 2.60
+ENV JNLP_SLAVE_VERSION 3.13
 ENV HOME /opt/jenkins-slave
 ENV MAVEN_VERSION 3.1.1
 ENV JAVA_HOME /usr/lib/jvm/java
